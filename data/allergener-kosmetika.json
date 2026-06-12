@@ -1,0 +1,30 @@
+{
+  "_kommentar": "BEHÖVER VERIFIERING mot aktuell EU-förordning. Deklarationspliktiga doftämnesallergener i kosmetika. EU utökade listan väsentligt 2023 genom förordning (EU) 2023/1545 – antalet är därför INTE hårdkodat någonstans i appen. Listan nedan innehåller de mest kända ämnena och ska kompletteras manuellt mot förordningens bilaga III.",
+  "behov_av_verifiering": true,
+  "forordning": "EU 1223/2009, ändrad genom (EU) 2023/1545",
+  "allergener": [
+    { "id": "linalool", "namn": "Linalool", "beskrivning": "Blommig doft (lavendel); allergen främst i oxiderad form." },
+    { "id": "limonene", "namn": "Limonene", "beskrivning": "Citrusdoft; allergen främst i oxiderad form." },
+    { "id": "citral", "namn": "Citral", "beskrivning": "Citrondoft, finns i citrongräs och citrusskal." },
+    { "id": "geraniol", "namn": "Geraniol", "beskrivning": "Rosdoft, finns i rosenolja och geranium." },
+    { "id": "citronellol", "namn": "Citronellol", "beskrivning": "Rosliknande doft." },
+    { "id": "eugenol", "namn": "Eugenol", "beskrivning": "Kryddnejlikedoft." },
+    { "id": "isoeugenol", "namn": "Isoeugenol", "beskrivning": "Kryddig blomdoft." },
+    { "id": "coumarin", "namn": "Coumarin", "beskrivning": "Sötaktig hödoft, finns i tonkaböna." },
+    { "id": "cinnamal", "namn": "Cinnamal", "beskrivning": "Kaneldoft (kanelaldehyd)." },
+    { "id": "cinnamyl-alcohol", "namn": "Cinnamyl Alcohol", "beskrivning": "Mild kanel-/blomdoft." },
+    { "id": "benzyl-alcohol", "namn": "Benzyl Alcohol", "beskrivning": "Svag blomdoft; används även som konserveringsmedel." },
+    { "id": "benzyl-benzoate", "namn": "Benzyl Benzoate", "beskrivning": "Svag balsamisk doft." },
+    { "id": "benzyl-salicylate", "namn": "Benzyl Salicylate", "beskrivning": "Mild blommig doft." },
+    { "id": "benzyl-cinnamate", "namn": "Benzyl Cinnamate", "beskrivning": "Balsamisk doft." },
+    { "id": "farnesol", "namn": "Farnesol", "beskrivning": "Mild blomdoft, finns i många eteriska oljor." },
+    { "id": "alpha-isomethyl-ionone", "namn": "Alpha-Isomethyl Ionone", "beskrivning": "Violdoft." },
+    { "id": "amyl-cinnamal", "namn": "Amyl Cinnamal", "beskrivning": "Jasminliknande doft." },
+    { "id": "hexyl-cinnamal", "namn": "Hexyl Cinnamal", "beskrivning": "Jasminliknande doft." },
+    { "id": "hydroxycitronellal", "namn": "Hydroxycitronellal", "beskrivning": "Liljekonvaljdoft." },
+    { "id": "anise-alcohol", "namn": "Anise Alcohol", "beskrivning": "Anisdoft." },
+    { "id": "methyl-2-octynoate", "namn": "Methyl 2-Octynoate", "beskrivning": "Violliknande doft." },
+    { "id": "evernia-prunastri", "namn": "Evernia Prunastri (ekmossa)", "beskrivning": "Extrakt av ekmossa, skoglig doft." },
+    { "id": "evernia-furfuracea", "namn": "Evernia Furfuracea (trädmossa)", "beskrivning": "Extrakt av trädmossa." }
+  ]
+}

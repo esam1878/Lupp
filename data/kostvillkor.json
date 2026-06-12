@@ -1,0 +1,17 @@
+{
+  "_kommentar": "Kostvillkor som användaren kan välja i profilen. Vid träff lyfts relevant fakta fram och ett generellt samband förklaras – aldrig en dom över personen.",
+  "villkor": [
+    {
+      "id": "hogt-blodtryck",
+      "namn": "Högt blodtryck",
+      "relevanta_naringsamnen": ["salt_g"],
+      "samband": "Högt saltintag kopplas till högt blodtryck."
+    },
+    {
+      "id": "blodsocker",
+      "namn": "Blodsocker (t.ex. diabetes eller prediabetes)",
+      "relevanta_naringsamnen": ["socker_g", "kolhydrat_g"],
+      "samband": "Tillsatt socker och snabba kolhydrater höjer blodsockret snabbt."
+    }
+  ]
+}
