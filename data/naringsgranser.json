@@ -1,0 +1,10 @@
+{
+  "_kommentar": "BEHÖVER VERIFIERING. Referensgränser per 100 g för att sätta näringsvärden i sammanhang, baserade på de vedertagna brittiska 'trafikljus'-gränserna (FSA) som även Livsmedelsverket refererar till. Används för deterministiska observationer – modellen hittar aldrig på egna gränser.",
+  "behov_av_verifiering": true,
+  "granser_per_100g": {
+    "fett_g": { "hog": 17.5, "lag": 3 },
+    "mattat_fett_g": { "hog": 5, "lag": 1.5 },
+    "socker_g": { "hog": 22.5, "lag": 5 },
+    "salt_g": { "hog": 1.5, "lag": 0.3 }
+  }
+}

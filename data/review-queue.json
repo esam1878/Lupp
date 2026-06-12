@@ -1,4 +1,10 @@
 {
   "_kommentar": "Okända ingredienser hamnar här för manuell granskning. De läggs ALDRIG automatiskt in i faktabanken.",
-  "ko": []
+  "ko": [
+    {
+      "ingrediens": "mystisk-okänd-ingrediens",
+      "forsta_gang": "2026-06-12T18:54:59.912Z",
+      "antal": 1
+    }
+  ]
 }

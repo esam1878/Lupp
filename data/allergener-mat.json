@@ -1,19 +1,19 @@
 {
-  "_kommentar": "EU:s 14 deklarationspliktiga livsmedelsallergener (bilaga II till förordning (EU) nr 1169/2011). Datalista – används av profil och matchning, inte hårdkodad i logik.",
+  "_kommentar": "EU:s 14 deklarationspliktiga livsmedelsallergener (bilaga II till förordning (EU) nr 1169/2011). Datalista – används av profil och matchning, inte hårdkodad i logik. nyckelord används för att matcha etikettens deklarerade allergener mot profilen.",
   "allergener": [
-    { "id": "gluten", "namn": "Gluten (spannmål)", "beskrivning": "Vete, råg, korn, havre, spelt, kamut och hybrider av dessa." },
-    { "id": "kraftdjur", "namn": "Kräftdjur", "beskrivning": "T.ex. räkor, krabba, hummer, kräftor." },
-    { "id": "ägg", "namn": "Ägg", "beskrivning": "Ägg från fågel, inklusive äggvita och äggula." },
-    { "id": "fisk", "namn": "Fisk", "beskrivning": "Alla fiskarter och produkter av fisk." },
-    { "id": "jordnötter", "namn": "Jordnötter", "beskrivning": "Jordnötter och jordnötsprodukter (en baljväxt, inte en nöt)." },
-    { "id": "soja", "namn": "Soja", "beskrivning": "Sojabönor och sojaprodukter." },
-    { "id": "mjölk", "namn": "Mjölk", "beskrivning": "Mjölk och mjölkprodukter, inklusive laktos och mjölkprotein." },
-    { "id": "nötter", "namn": "Nötter", "beskrivning": "Mandel, hasselnöt, valnöt, cashew, pekan, paranöt, pistasch, makadamia." },
-    { "id": "selleri", "namn": "Selleri", "beskrivning": "Blad-, stjälk- och rotselleri samt selleriprodukter." },
-    { "id": "senap", "namn": "Senap", "beskrivning": "Senapsfrön och senapsprodukter." },
-    { "id": "sesam", "namn": "Sesam", "beskrivning": "Sesamfrön och sesamprodukter." },
-    { "id": "sulfit", "namn": "Svaveldioxid och sulfit", "beskrivning": "Vid halter över 10 mg/kg eller 10 mg/liter (t.ex. i torkad frukt och vin)." },
-    { "id": "lupin", "namn": "Lupin", "beskrivning": "Lupinfrön och lupinmjöl, förekommer i bl.a. glutenfritt bröd." },
-    { "id": "blötdjur", "namn": "Blötdjur", "beskrivning": "T.ex. musslor, ostron, bläckfisk, sniglar." }
+    { "id": "gluten", "namn": "Gluten (spannmål)", "beskrivning": "Vete, råg, korn, havre, spelt, kamut och hybrider av dessa.", "nyckelord": ["gluten", "vete", "råg", "korn", "havre", "spelt", "kamut", "dinkel"] },
+    { "id": "kraftdjur", "namn": "Kräftdjur", "beskrivning": "T.ex. räkor, krabba, hummer, kräftor.", "nyckelord": ["kräftdjur", "räka", "räkor", "krabba", "hummer", "kräfta", "kräftor"] },
+    { "id": "ägg", "namn": "Ägg", "beskrivning": "Ägg från fågel, inklusive äggvita och äggula.", "nyckelord": ["ägg", "äggvita", "äggula", "äggpulver", "albumin"] },
+    { "id": "fisk", "namn": "Fisk", "beskrivning": "Alla fiskarter och produkter av fisk.", "nyckelord": ["fisk", "torsk", "lax", "sill", "ansjovis", "tonfisk", "makrill"] },
+    { "id": "jordnötter", "namn": "Jordnötter", "beskrivning": "Jordnötter och jordnötsprodukter (en baljväxt, inte en nöt).", "nyckelord": ["jordnöt", "jordnötter", "jordnöts"] },
+    { "id": "soja", "namn": "Soja", "beskrivning": "Sojabönor och sojaprodukter.", "nyckelord": ["soja", "sojabönor", "sojaprotein", "sojalecitin"] },
+    { "id": "mjölk", "namn": "Mjölk", "beskrivning": "Mjölk och mjölkprodukter, inklusive laktos och mjölkprotein.", "nyckelord": ["mjölk", "laktos", "vassle", "kasein", "grädde", "smör", "ost", "yoghurt"] },
+    { "id": "nötter", "namn": "Nötter", "beskrivning": "Mandel, hasselnöt, valnöt, cashew, pekan, paranöt, pistasch, makadamia.", "nyckelord": ["nötter", "nöt", "mandel", "hasselnöt", "valnöt", "cashew", "cashewnöt", "pekannöt", "paranöt", "pistasch", "pistaschmandel", "makadamia"] },
+    { "id": "selleri", "namn": "Selleri", "beskrivning": "Blad-, stjälk- och rotselleri samt selleriprodukter.", "nyckelord": ["selleri", "rotselleri", "sellerifrö"] },
+    { "id": "senap", "namn": "Senap", "beskrivning": "Senapsfrön och senapsprodukter.", "nyckelord": ["senap", "senapsfrö", "senapspulver"] },
+    { "id": "sesam", "namn": "Sesam", "beskrivning": "Sesamfrön och sesamprodukter.", "nyckelord": ["sesam", "sesamfrö", "sesamolja", "tahini"] },
+    { "id": "sulfit", "namn": "Svaveldioxid och sulfit", "beskrivning": "Vid halter över 10 mg/kg eller 10 mg/liter (t.ex. i torkad frukt och vin).", "nyckelord": ["sulfit", "svaveldioxid", "e220", "e221", "e222", "e223", "e224", "e226", "e227", "e228"] },
+    { "id": "lupin", "namn": "Lupin", "beskrivning": "Lupinfrön och lupinmjöl, förekommer i bl.a. glutenfritt bröd.", "nyckelord": ["lupin", "lupinmjöl", "lupinfrö"] },
+    { "id": "blötdjur", "namn": "Blötdjur", "beskrivning": "T.ex. musslor, ostron, bläckfisk, sniglar.", "nyckelord": ["blötdjur", "mussla", "musslor", "ostron", "bläckfisk", "snigel", "sniglar"] }
   ]
 }
