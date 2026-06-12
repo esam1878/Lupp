@@ -9,12 +9,18 @@ import type { FaktabankPost, Uppslag } from "@/lib/types";
 
 const poster = (bank as { poster: FaktabankPost[] }).poster;
 
-/** Normalisera etikettext: gemener, ta bort procent, asterisker, extra mellanslag. */
+/**
+ * Normalisera etikettext: gemener, ta bort procent, asterisker, extra
+ * mellanslag, och vik diakriter (å/ä→a, ö→o) — etiketter och OCR skriver
+ * ibland svenska ord utan prickar ("VETEMJOL").
+ */
 function normalisera(text: string): string {
   return text
     .toLowerCase()
     .replace(/\d+([.,]\d+)?\s*%/g, "")
     .replace(/[*†]/g, "")
+    .replace(/[åä]/g, "a")
+    .replace(/ö/g, "o")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -58,7 +64,7 @@ function hittaEnummer(text: string): string[] {
 /** Slå upp en ingrediens som den står på etiketten. Returnerar post eller null. */
 export function slaUpp(ingrediens: string): FaktabankPost | null {
   const norm = normalisera(ingrediens);
-  if (!norm || norm === "oläsligt") return null;
+  if (!norm || norm === "olasligt") return null;
 
   // 1. Direkt träff på namn/synonym
   const direkt = index.get(norm);

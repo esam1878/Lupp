@@ -51,8 +51,17 @@ const granser = (
   }
 ).granser_per_100g;
 
+/**
+ * Normalisering med diakritvikning (å/ä→a, ö→o): etiketter och OCR skriver
+ * ibland svenska ord utan prickar ("MJOLK"), och en allergimatchning får
+ * inte missa på grund av det.
+ */
 function norm(s: string): string {
-  return s.toLowerCase().trim();
+  return s
+    .toLowerCase()
+    .trim()
+    .replace(/[åä]/g, "a")
+    .replace(/ö/g, "o");
 }
 
 /** Matcha extraktion + uppslag mot profilens allergener. */
@@ -61,6 +70,7 @@ export function hittaProfiltraffar(
   uppslag: Uppslag[],
   profil: Profil
 ): Profiltraff[] {
+  // Obs: både profilens id:n och allt som jämförs mot dem går genom norm().
   const valda = new Set(profil.allergener.map(norm));
   if (valda.size === 0) return [];
 
@@ -77,7 +87,7 @@ export function hittaProfiltraffar(
         utlost_av: u.ingrediens_pa_etiketten,
       });
     }
-    if (allergenId === "doftämne" && valda.has(norm(u.post.id))) {
+    if (allergenId === norm("doftämne") && valda.has(norm(u.post.id))) {
       traffar.set(norm(u.post.id), {
         allergen: norm(u.post.id),
         utlost_av: u.ingrediens_pa_etiketten,
@@ -89,10 +99,11 @@ export function hittaProfiltraffar(
   for (const deklarerad of extraktion.allergener_deklarerade) {
     const d = norm(deklarerad);
     for (const a of matAllergener) {
-      if (!valda.has(a.id)) continue;
-      if (a.nyckelord.some((n) => d.includes(n))) {
-        if (!traffar.has(a.id)) {
-          traffar.set(a.id, { allergen: a.id, utlost_av: deklarerad });
+      const id = norm(a.id);
+      if (!valda.has(id)) continue;
+      if (a.nyckelord.some((n) => d.includes(norm(n)))) {
+        if (!traffar.has(id)) {
+          traffar.set(id, { allergen: id, utlost_av: deklarerad });
         }
       }
     }
@@ -103,9 +114,9 @@ export function hittaProfiltraffar(
 
 /** Visningsnamn för ett allergen-id (mat eller doftämne). */
 export function allergenNamn(id: string): string {
-  const mat = matAllergener.find((a) => a.id === norm(id));
+  const mat = matAllergener.find((a) => norm(a.id) === norm(id));
   if (mat) return mat.namn;
-  const kosmetika = kosmetikaAllergener.find((a) => a.id === norm(id));
+  const kosmetika = kosmetikaAllergener.find((a) => norm(a.id) === norm(id));
   if (kosmetika) return kosmetika.namn;
   return id;
 }
