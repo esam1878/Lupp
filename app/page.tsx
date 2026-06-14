@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { bildTillBase64 } from "@/lib/bild";
 import { lasProfil } from "@/lib/profil";
 import type { Extraktion } from "@/lib/types";
 import Resultat, { type ExplainSvar } from "@/components/Resultat";
+import StreckkodScanner from "@/components/StreckkodScanner";
 
 type Status =
   | { steg: "start" }
@@ -18,6 +19,7 @@ export default function Home() {
   const [ean, setEan] = useState("");
   const [eanInfo, setEanInfo] = useState<string | null>(null);
   const [produktnamn, setProduktnamn] = useState<string | null>(null);
+  const [skannar, setSkannar] = useState(false);
 
   async function forklara(extraktion: Extraktion) {
     setStatus({ steg: "forklarar" });
@@ -31,8 +33,10 @@ export default function Home() {
     setStatus({ steg: "klar", svar: data as ExplainSvar });
   }
 
-  async function hanteraEan() {
-    const kod = ean.replace(/\D/g, "");
+  // Tar en explicit kod (från skannern) eller faller tillbaka på inmatat EAN.
+  // Skannern ger koden direkt eftersom state-uppdateringen är asynkron.
+  async function hanteraEan(kodInput?: string) {
+    const kod = (kodInput ?? ean).replace(/\D/g, "");
     if (!kod) return;
     try {
       setEanInfo(null);
@@ -56,6 +60,14 @@ export default function Home() {
       });
     }
   }
+
+  // useCallback så att skannerns useEffect inte startar om i onödan.
+  const hanteraSkanning = useCallback((kod: string) => {
+    setSkannar(false);
+    setEan(kod);
+    hanteraEan(kod);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function hanteraFoto(fil: File) {
     try {
@@ -122,12 +134,34 @@ export default function Home() {
         />
       </div>
 
+      {skannar && (
+        <StreckkodScanner
+          onResultat={hanteraSkanning}
+          onAvbryt={() => setSkannar(false)}
+        />
+      )}
+
       <div className="card">
         <h2 style={{ fontSize: "1.05rem" }}>🔢 Eller ange streckkoden</h2>
         <p className="diskret" style={{ margin: "0.35rem 0 0.75rem" }}>
-          EAN-koden under streckkoden slås upp mot Open Food Facts. Vid träff
-          behövs inget foto.
+          Skanna streckkoden med kameran, eller skriv in EAN-koden. Den slås
+          upp mot Open Food Facts — vid träff behövs inget foto.
         </p>
+        {!skannar && (
+          <button
+            className="btn btn-sekundar"
+            style={{ marginBottom: "0.75rem" }}
+            onClick={() => {
+              setEanInfo(null);
+              setSkannar(true);
+            }}
+            disabled={
+              status.steg === "extraherar" || status.steg === "forklarar"
+            }
+          >
+            📷 Skanna med kameran
+          </button>
+        )}
         <div style={{ display: "flex", gap: "0.5rem" }}>
           <input
             type="text"
@@ -144,7 +178,7 @@ export default function Home() {
           />
           <button
             className="btn"
-            onClick={hanteraEan}
+            onClick={() => hanteraEan()}
             disabled={
               !ean.trim() ||
               status.steg === "extraherar" ||

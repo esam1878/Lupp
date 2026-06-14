@@ -81,6 +81,24 @@ mobilens webbläsare — telefonen måste vara på samma WiFi.
 > datorns IP får adressen uppdateras där. (Detta gäller bara `next dev` — en
 > riktig deploy/`next start` har inte begränsningen.)
 
+### Skanna streckkod med kameran (kräver HTTPS på mobil)
+
+Knappen **📷 Skanna med kameran** öppnar bakre kameran och läser EAN/UPC med
+[`@zxing/browser`](https://github.com/zxing-js/browser). Webbläsarens kamera-API
+(`getUserMedia`) fungerar bara i en **säker kontext** — `localhost` eller
+**https**. Över vanlig `http://<lan-ip>:3000` på mobilen är kameran blockerad,
+och skannern visar då ett besked om att mata in EAN manuellt i stället.
+
+För att testa live-skanning på telefonen, kör dev-servern med https:
+
+```bash
+npm run dev:https      # next dev --experimental-https (genererar självsignerat cert)
+```
+
+Öppna sedan `https://192.168.1.76:3000` på mobilen och godkänn certvarningen
+(självsignerat). Därefter är sidan en säker kontext och kameran får öppnas.
+Manuell EAN-inmatning fungerar oavsett — även över vanlig http.
+
 ## Faktabanken: fylla på och verifiera
 
 - Schema per post: `{ id, namn, synonymer[], typ, forklaring_klarsprak,
