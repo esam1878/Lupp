@@ -37,16 +37,18 @@ export default function StreckkodScanner({
   useEffect(() => {
     let avbruten = false;
 
-    // @zxing/browser kan kasta oskadliga asynkrona rejections på vissa
-    // kameror (ImageCapture "setPhotoOptions failed"), och React Strict
-    // Mode i dev monterar effekten två gånger vilket ger en kortvarig
-    // "play() request was interrupted". Inget av detta stoppar avkodningen,
-    // men obehandlat skulle det kunna slå upp dev-felöverlägget. Svälj just
-    // de felen — inga andra.
+    // @zxing/browser kan kasta oskadliga asynkrona rejections vid
+    // kamerastart/-stopp ("setPhotoOptions failed", "play() interrupted",
+    // "Track is in an invalid state"). Inget stoppar avkodningen, men
+    // obehandlat skulle de kunna slå upp dev-felöverlägget. Svälj just dem.
     const sväljKäntKamerafel = (e: PromiseRejectionEvent) => {
       const reason = e.reason as { message?: string } | string | undefined;
       const m = typeof reason === "string" ? reason : reason?.message ?? "";
-      if (m.includes("setPhotoOptions") || m.includes("play()")) {
+      if (
+        m.includes("setPhotoOptions") ||
+        m.includes("play()") ||
+        m.includes("invalid state")
+      ) {
         e.preventDefault();
       }
     };
@@ -65,44 +67,52 @@ export default function StreckkodScanner({
       return;
     }
 
-    const reader = new BrowserMultiFormatReader(hints);
-
-    reader
-      .decodeFromConstraints(
-        { video: { facingMode: "environment" } },
-        videoRef.current!,
-        (result, _err, controls) => {
-          if (avbruten) return;
-          if (result) {
-            controls.stop();
-            onResultat(result.getText());
+    // Liten fördröjning innan kameran startar. I React Strict Mode (dev)
+    // körs effekt → cleanup → effekt snabbt efter varandra; genom att vänta
+    // hinner den första (kasserade) monteringens cleanup avbryta INNAN
+    // getUserMedia anropas, så bara EN kameraström skapas. Det eliminerar
+    // racet som annars ger "play() interrupted" / "Track in invalid state".
+    const start = setTimeout(() => {
+      const reader = new BrowserMultiFormatReader(hints);
+      reader
+        .decodeFromConstraints(
+          { video: { facingMode: "environment" } },
+          videoRef.current!,
+          (result, _err, controls) => {
+            if (avbruten) return;
+            if (result) {
+              controls.stop();
+              onResultat(result.getText());
+            }
           }
-        }
-      )
-      .then((controls) => {
-        if (avbruten) {
-          controls.stop();
-          return;
-        }
-        controlsRef.current = controls;
-      })
-      .catch((e: unknown) => {
-        const namn = e instanceof DOMException ? e.name : "";
-        if (namn === "NotAllowedError") {
-          setFel(
-            "Behörighet till kameran nekades. Tillåt kameran i webbläsaren och försök igen, eller mata in EAN manuellt."
-          );
-        } else if (namn === "NotFoundError") {
-          setFel("Ingen kamera hittades på enheten. Mata in EAN manuellt.");
-        } else {
-          setFel(
-            "Kunde inte starta kameran. Mata in EAN manuellt, eller försök igen."
-          );
-        }
-      });
+        )
+        .then((controls) => {
+          if (avbruten) {
+            controls.stop();
+            return;
+          }
+          controlsRef.current = controls;
+        })
+        .catch((e: unknown) => {
+          if (avbruten) return;
+          const namn = e instanceof DOMException ? e.name : "";
+          if (namn === "NotAllowedError") {
+            setFel(
+              "Behörighet till kameran nekades. Tillåt kameran i webbläsaren och försök igen, eller mata in EAN manuellt."
+            );
+          } else if (namn === "NotFoundError") {
+            setFel("Ingen kamera hittades på enheten. Mata in EAN manuellt.");
+          } else {
+            setFel(
+              "Kunde inte starta kameran. Mata in EAN manuellt, eller försök igen."
+            );
+          }
+        });
+    }, 250);
 
     return () => {
       avbruten = true;
+      clearTimeout(start);
       controlsRef.current?.stop();
       window.removeEventListener("unhandledrejection", sväljKäntKamerafel);
     };
