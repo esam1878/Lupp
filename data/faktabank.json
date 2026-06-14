@@ -2,9 +2,21 @@
   "_kommentar": "Faktabanken är Lupps minne och enda sanningskälla. ALLA seed-poster har verified:false och kalla_url:TODO tills de verifierats manuellt mot EFSA/Livsmedelsverket. Overifierade poster visas i appen som 'preliminär — under granskning'.",
   "poster": [
     {
+      "id": "vatten",
+      "namn": "Vatten",
+      "synonymer": ["water", "vand", "vesi", "vann", "aqua"],
+      "typ": "bas",
+      "forklaring_klarsprak": "Vanligt vatten – oftast huvudingrediensen i drycker, soppor och många färska produkter.",
+      "nyans": "Helt oproblematiskt och kalorifritt. Att vatten står först i listan betyder bara att det väger mest, inget om kvaliteten i övrigt.",
+      "allergen": null,
+      "kalla": "Livsmedelsverket – BEHÖVER VERIFIERING",
+      "kalla_url": "TODO",
+      "verified": false
+    },
+    {
       "id": "vetemjol",
       "namn": "Vetemjöl",
-      "synonymer": ["vete", "mjöl av vete", "wheat flour", "durumvete", "fullkornsvetemjöl"],
+      "synonymer": ["vete", "mjöl av vete", "wheat flour", "durumvete", "fullkornsvetemjöl", "wheat", "hvede", "hvete", "vehnä", "vehnäjauho"],
       "typ": "spannmål",
       "forklaring_klarsprak": "Malet vete – basen i de flesta bröd, kex och pasta. Ger struktur tack vare sitt glutenprotein.",
       "nyans": "Fullkornsvarianter bidrar med fibrer och mineraler; siktat vetemjöl ger mest stärkelse. Innehåller gluten, vilket personer med celiaki eller veteallergi behöver undvika.",
@@ -16,7 +28,7 @@
     {
       "id": "mjolk",
       "namn": "Mjölk",
-      "synonymer": ["helmjölk", "skummjölk", "mjölkpulver", "skummjölkspulver", "grädde", "smör"],
+      "synonymer": ["helmjölk", "skummjölk", "mjölkpulver", "skummjölkspulver", "grädde", "smör", "milk", "milk powder", "skimmed milk powder", "nonfat milk", "whole milk", "cream", "butter", "mælk", "melk", "maito", "smør", "voi"],
       "typ": "mejeri",
       "forklaring_klarsprak": "Mjölk eller mjölkbaserade ingredienser – ger krämighet, smak och näring i många produkter.",
       "nyans": "Bidrar med protein och kalcium. Innehåller laktos och mjölkprotein – ett av EU:s deklarationspliktiga allergener.",
@@ -28,7 +40,7 @@
     {
       "id": "vassle",
       "namn": "Vassle",
-      "synonymer": ["vassleprotein", "vasslepulver", "whey", "vassleproteinkoncentrat", "vassleproteinisolat"],
+      "synonymer": ["vassleprotein", "vasslepulver", "whey", "vassleproteinkoncentrat", "vassleproteinisolat", "whey powder", "sweet whey powder", "valle", "myse", "hera"],
       "typ": "mejeri",
       "forklaring_klarsprak": "Den vätska som blir över när mjölk ystas till ost. Torkas ofta till pulver och används som proteinkälla eller fyllnad.",
       "nyans": "Komplett protein som kroppen tar upp lätt – vanligt i proteinprodukter. Kommer från mjölk och omfattas därför av mjölkallergi, även om ordet 'mjölk' inte syns i namnet.",
@@ -40,7 +52,7 @@
     {
       "id": "laktos",
       "namn": "Laktos",
-      "synonymer": ["mjölksocker"],
+      "synonymer": ["mjölksocker", "lactose", "laktoosi"],
       "typ": "mejeri",
       "forklaring_klarsprak": "Mjölkens eget socker. Används också som fyllnadsmedel i bland annat läkemedel och pulverprodukter.",
       "nyans": "Ofarligt för de flesta, men personer med laktosintolerans kan få magbesvär. Kommer från mjölk – relevant även vid mjölkproteinallergi eftersom spår av protein kan följa med.",
@@ -64,7 +76,7 @@
     {
       "id": "socker",
       "namn": "Socker",
-      "synonymer": ["sackaros", "strösocker", "rörsocker", "betsocker", "farinsocker"],
+      "synonymer": ["sackaros", "strösocker", "rörsocker", "betsocker", "farinsocker", "sugar", "sukker", "sokeri"],
       "typ": "sötningsmedel (socker)",
       "forklaring_klarsprak": "Vanligt socker (sackaros) från sockerbetor eller sockerrör. Ger sötma, konsistens och hållbarhet.",
       "nyans": "Ger snabb energi men inga andra näringsämnen. Högt intag av tillsatt socker kopplas till karies och ökad risk för övervikt; det påverkar också blodsockret snabbt.",
@@ -76,7 +88,7 @@
     {
       "id": "glukossirap",
       "namn": "Glukossirap",
-      "synonymer": ["glukos-fruktossirap", "stärkelsesirap", "majssirap", "glukos"],
+      "synonymer": ["glukos-fruktossirap", "stärkelsesirap", "majssirap", "glukos", "glucose syrup", "glucose-fructose syrup", "glukosesirup", "glukoosisiirappi"],
       "typ": "sötningsmedel (socker)",
       "forklaring_klarsprak": "Flytande socker framställt ur stärkelse, ofta majs eller vete. Ger sötma och mjuk konsistens i godis, glass och bakverk.",
       "nyans": "Räknas som tillsatt socker och påverkar blodsockret snabbt. Glukossirap baserad på vete är normalt så renad att den undantas från glutenmärkning enligt EU:s regler.",
@@ -112,7 +124,7 @@
     {
       "id": "salt",
       "namn": "Salt",
-      "synonymer": ["natriumklorid", "havssalt", "bordssalt", "jodberikat salt"],
+      "synonymer": ["natriumklorid", "havssalt", "bordssalt", "jodberikat salt", "sea salt", "suola"],
       "typ": "krydda/konservering",
       "forklaring_klarsprak": "Vanligt koksalt. Ger smak och hjälper till att bevara livsmedel.",
       "nyans": "Kroppen behöver en liten mängd natrium, och jodberikat salt bidrar med jod. Högt saltintag kopplas dock till högt blodtryck – de flesta i Sverige får i sig mer än rekommenderat.",
@@ -124,7 +136,7 @@
     {
       "id": "rapsolja",
       "namn": "Rapsolja",
-      "synonymer": ["raps", "rybsolja"],
+      "synonymer": ["raps", "rybsolja", "rapeseed oil", "canola oil", "rapsolie", "rapsöljy", "rypsiöljy"],
       "typ": "fett",
       "forklaring_klarsprak": "Olja pressad ur rapsfrön – den vanligaste matoljan i svenska produkter.",
       "nyans": "Innehåller mest omättat fett, bland annat omega-3, och brukar lyftas fram som ett bra vardagsfett. Som allt fett är den energität.",
@@ -136,7 +148,7 @@
     {
       "id": "palmolja",
       "namn": "Palmolja",
-      "synonymer": ["palmfett", "palmkärnolja"],
+      "synonymer": ["palmfett", "palmkärnolja", "palm oil", "palm fat", "palm kernel oil", "palmolie", "palmuöljy", "palm"],
       "typ": "fett",
       "forklaring_klarsprak": "Fett från oljepalmens frukter. Är fast i rumstemperatur och används för konsistens i bland annat kakor, choklad och margarin.",
       "nyans": "Tekniskt praktisk och billig, men innehåller mycket mättat fett, som i stora mängder kopplas till höjda blodfetter. Odlingen är också omdiskuterad av miljöskäl.",
@@ -172,7 +184,7 @@
     {
       "id": "e500",
       "namn": "Natriumkarbonater (E500)",
-      "synonymer": ["e500", "natriumbikarbonat", "bikarbonat", "natriumkarbonat"],
+      "synonymer": ["e500", "natriumbikarbonat", "bikarbonat", "natriumkarbonat", "sodium bicarbonate", "sodium carbonates", "baking soda"],
       "typ": "bakpulver/surhetsreglerande medel",
       "forklaring_klarsprak": "Bikarbonat och liknande salter – får degar att jäsa och reglerar surhet.",
       "nyans": "Ett av de äldsta och mest beprövade bakhjälpmedlen; betraktas som oproblematiskt. Bidrar med en liten mängd natrium.",
@@ -256,7 +268,7 @@
     {
       "id": "lecitin",
       "namn": "Lecitin (E322)",
-      "synonymer": ["e322", "solroslecitin", "emulgeringsmedel lecitin"],
+      "synonymer": ["e322", "solroslecitin", "emulgeringsmedel lecitin", "lecithin", "sunflower lecithin", "lecitiini"],
       "typ": "emulgeringsmedel",
       "forklaring_klarsprak": "Ett fettämne som binder ihop vatten och fett, till exempel i choklad och margarin. Utvinns oftast ur solros, raps eller soja.",
       "nyans": "Naturligt förekommande ämne (finns bl.a. i äggula) och betraktas som oproblematiskt. Står det 'sojalecitin' kommer det från soja – se den posten.",
@@ -268,7 +280,7 @@
     {
       "id": "sojalecitin",
       "namn": "Sojalecitin",
-      "synonymer": ["lecitin (soja)", "sojalecitin (e322)"],
+      "synonymer": ["lecitin (soja)", "sojalecitin (e322)", "soy lecithin", "soya lecithin", "soijalesitiini"],
       "typ": "emulgeringsmedel",
       "forklaring_klarsprak": "Lecitin utvunnet ur sojabönor – binder ihop vatten och fett, vanligast i choklad.",
       "nyans": "Kommer från soja och måste därför märkas ut. Det är dock mycket renat och innehåller bara små rester av sojaprotein; många sojaallergiker tål det, men det avgörs alltid i samråd med vården.",
@@ -280,7 +292,7 @@
     {
       "id": "soja",
       "namn": "Soja",
-      "synonymer": ["sojaprotein", "sojabönor", "sojamjöl", "texturerat sojaprotein"],
+      "synonymer": ["sojaprotein", "sojabönor", "sojamjöl", "texturerat sojaprotein", "soy", "soya", "soybeans", "soybean", "sojabønner", "soijapavut"],
       "typ": "baljväxt",
       "forklaring_klarsprak": "Protein eller mjöl från sojabönan – vanlig proteinkälla i vegetariska produkter och som ingrediens i charkvaror.",
       "nyans": "Komplett växtprotein med bra näringsvärde. Ett av EU:s deklarationspliktiga allergener.",
@@ -292,7 +304,7 @@
     {
       "id": "agg",
       "namn": "Ägg",
-      "synonymer": ["äggvita", "äggula", "äggpulver", "äggalbumin", "helägg"],
+      "synonymer": ["äggvita", "äggula", "äggpulver", "äggalbumin", "helägg", "egg", "egg white", "egg yolk", "egg powder", "white egg powder", "æg", "kananmuna"],
       "typ": "animalisk ingrediens",
       "forklaring_klarsprak": "Ägg eller äggbaserade ingredienser – binder ihop, ger luftighet och näring i exempelvis bakverk, pasta och majonnäs.",
       "nyans": "Näringsrikt med komplett protein. Ett av EU:s deklarationspliktiga allergener; äggallergi är vanligast hos barn.",
@@ -388,7 +400,7 @@
     {
       "id": "arom",
       "namn": "Arom",
-      "synonymer": ["aromer", "naturlig arom", "naturliga aromer", "vaniljarom"],
+      "synonymer": ["aromer", "naturlig arom", "naturliga aromer", "vaniljarom", "flavouring", "flavoring", "natural flavouring", "natural flavoring", "aroma", "aromi"],
       "typ": "smakgivare",
       "forklaring_klarsprak": "Samlingsnamn för smakämnen som tillsätts för att ge eller förstärka smak. 'Naturlig arom' ska komma från naturliga råvaror; enbart 'arom' kan vara syntetisk.",
       "nyans": "Aromer används i mycket små mängder och är godkända, men exakt vad de består av framgår sällan av etiketten. Allergener i aromer (t.ex. mjölk) måste dock alltid anges.",
