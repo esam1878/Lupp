@@ -67,6 +67,20 @@ npm run dev
 Modell: `claude-haiku-4-5` via Anthropic API. Nyckeln läses ur `.env.local`
 och hårdkodas aldrig.
 
+### Testa på mobilen (samma WiFi)
+
+`npm run dev` lyssnar även på datorns nätverksadress (visas som **Network:**
+i terminalen, t.ex. `http://192.168.1.76:3000`). Öppna den adressen i
+mobilens webbläsare — telefonen måste vara på samma WiFi.
+
+> **Viktigt:** Next 16 blockerar dev-lägets interna resurser när sidan öppnas
+> från en annan adress än `localhost`. Symptomet är att sidan *syns* på
+> mobilen men inget händer när man laddar upp bild eller trycker på en knapp
+> (React hydreras aldrig). Lös det genom att lista datorns LAN-adress i
+> `allowedDevOrigins` i [`next.config.ts`](next.config.ts). Byter routern ut
+> datorns IP får adressen uppdateras där. (Detta gäller bara `next dev` — en
+> riktig deploy/`next start` har inte begränsningen.)
+
 ## Faktabanken: fylla på och verifiera
 
 - Schema per post: `{ id, namn, synonymer[], typ, forklaring_klarsprak,
