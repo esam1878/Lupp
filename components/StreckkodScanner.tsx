@@ -37,12 +37,28 @@ export default function StreckkodScanner({
   useEffect(() => {
     let avbruten = false;
 
+    // @zxing/browser kan kasta oskadliga asynkrona rejections på vissa
+    // kameror (ImageCapture "setPhotoOptions failed"), och React Strict
+    // Mode i dev monterar effekten två gånger vilket ger en kortvarig
+    // "play() request was interrupted". Inget av detta stoppar avkodningen,
+    // men obehandlat skulle det kunna slå upp dev-felöverlägget. Svälj just
+    // de felen — inga andra.
+    const sväljKäntKamerafel = (e: PromiseRejectionEvent) => {
+      const reason = e.reason as { message?: string } | string | undefined;
+      const m = typeof reason === "string" ? reason : reason?.message ?? "";
+      if (m.includes("setPhotoOptions") || m.includes("play()")) {
+        e.preventDefault();
+      }
+    };
+    window.addEventListener("unhandledrejection", sväljKäntKamerafel);
+
     // Säker kontext krävs för kameran.
     if (
       typeof navigator === "undefined" ||
       !navigator.mediaDevices?.getUserMedia ||
       (typeof window !== "undefined" && !window.isSecureContext)
     ) {
+      window.removeEventListener("unhandledrejection", sväljKäntKamerafel);
       setFel(
         "Kameran kräver en säker anslutning (https eller localhost). På mobilen över http funkar inte direktskanning — mata in EAN-koden manuellt nedan i stället."
       );
@@ -88,6 +104,7 @@ export default function StreckkodScanner({
     return () => {
       avbruten = true;
       controlsRef.current?.stop();
+      window.removeEventListener("unhandledrejection", sväljKäntKamerafel);
     };
   }, [onResultat]);
 
